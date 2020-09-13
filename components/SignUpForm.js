@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {
-    Button,
-    Text,
+import {Button,Text,
     View,
     TextInput,
     ActivityIndicator,
