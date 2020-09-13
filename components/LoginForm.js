@@ -33,32 +33,24 @@ export default class SignUpForm extends React.Component {
         errorMessage: null,
     };
 
-// Kaldes når vi starter en operation der skal vise en spinner
     startLoading = () => this.setState({ isLoading: true });
-    // Kaldes når en operation er færdig
     endLoading = () => this.setState({ isLoading: false });
-    // Kaldes når der er sket en fejl og den skal vises
     setError = errorMessage => this.setState({ errorMessage });
-    // Kaldes når vi prøver igen og aktuelle fejl skal fjernes
     clearError = () => this.setState({ errorMessage: null });
 
-    // Event handlers som opdaterer state hver gang feltets indhold ændres
     handleChangeEmail = email => this.setState({ email });
     handleChangePassword = password => this.setState({ password });
 
     handleSubmit = async () => {
-        // Læser værdier fra state
         const { email, password } = this.state;
         try {
             this.startLoading();
             this.clearError();
-            // Her kalder vi den rette funktion fra firebase auth
             const result = await firebase.auth().signInWithEmailAndPassword(email, password);
             console.log(result);
             this.endLoading();
             this.setState({ isCompleted: true });
         } catch (error) {
-            // Vi sender `message` feltet fra den error der modtages, videre.
             this.setError(error.message);
             this.endLoading();
         }
@@ -67,7 +59,6 @@ export default class SignUpForm extends React.Component {
     render = () => {
         const { errorMessage, email, password, isCompleted } = this.state;
         if (isCompleted) {
-            //ændret så det passer til at man er logget ind
             return <Text>You are now logged in</Text>;
         }
         return (
