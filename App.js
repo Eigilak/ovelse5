@@ -12,7 +12,7 @@ import { Card } from 'react-native-paper';
 export default class App extends Component {
     state = {user:null}
 
-    componentDidMount(){
+    UNSAFE_componentWillMount(){
         const fireBaseConfig ={
             apiKey: "AIzaSyCSZ7E1KllQBWMjetSbqKmfW7_DdPtPYp4",
             authDomain: "ovelse5-ec2ee.firebaseapp.com",
